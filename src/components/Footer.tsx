@@ -64,7 +64,9 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Globe className="w-4 h-4 text-digie-green" />
-                <span>{contactInfo.website}</span>
+             <a href={`https://www.digiewomenawards.com/`} className="hover:text-digie-green transition-colors duration-200">
+                www.digiewomenawards.com
+                </a>
               </li>
             </ul>
           </div>
@@ -74,10 +76,10 @@ export default function Footer() {
             <h3 className="font-semibold text-lg mb-4">Suivez-nous</h3>
             <div className="flex gap-3">
               {[
-                { icon: Facebook, href: "#", label: "Facebook" },
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
-                { icon: Youtube, href: "#", label: "YouTube" },
-                { icon: Instagram, href: "#", label: "Instagram" },
+                { icon: Facebook, href: "facebook.com/digiewomenschool", label: "Facebook" },
+                { icon: Linkedin, href: "https://www.linkedin.com/company/digiewomen-school/", label: "LinkedIn" },
+                { icon: Youtube, href: "http://www.youtube.com/@digiewomenschool7470", label: "YouTube" },
+                { icon: Instagram, href: "https://www.instagram.com/digiewomenschool?igsi=ZHFuNmt2N2ZhNHo0", label: "Instagram" },
               ].map((social) => (
                 <a
                   key={social.label}

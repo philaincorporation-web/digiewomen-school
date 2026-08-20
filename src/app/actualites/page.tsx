@@ -33,7 +33,7 @@ const events: EventItem[] = [
     fullDescription:
       "Sessions intensives de formation en cybersécurité et initiation à l'intelligence artificielle en partenariat avec Moov Africa Gabon Telecom. Ces formations visent à renforcer les compétences des jeunes et des femmes dans les métiers du numérique, avec un focus sur la protection des systèmes d'information et les applications concrètes de l'IA.",
     type: "Formation",
-    image: "/images/actualites/cybersecurite-ia.jpg",
+    image: "/images/actualites/fortion2.png",
   },
   {
     id: 2,
@@ -45,7 +45,7 @@ const events: EventItem[] = [
     fullDescription:
       "4 éditions des DIGIEWOMEN AWARDS célébrant l'excellence des femmes et des jeunes dans le numérique et l'agro-pastoral. Un événement phare qui met en lumière les talents, récompense l'innovation et crée des opportunités de networking et de collaboration.",
     type: "Événement",
-    image: "/images/actualites/digiewomen-awards.jpg",
+    image: "/images/actualites/conference006.png",
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ const events: EventItem[] = [
     fullDescription:
       "Déploiement de la plateforme e-Agri361 pour l'agriculture intelligente et le développement agro-pastoral des femmes et des jeunes. Cette solution digitale intègre formation, accès aux intrants, marketplace agricole, météo et outils d'aide à la décision basés sur l'IA.",
     type: "Innovation",
-    image: "/images/actualites/e-agri361.jpg",
+    image: "/images/actualites/eagri2.png",
   },
   {
     id: 4,
@@ -69,7 +69,7 @@ const events: EventItem[] = [
     fullDescription:
       "Collaboration avec les ministères, Moov Africa, l'OIF, l'IOM et plus de 35 partenaires stratégiques. Ces partenariats permettent de déployer des programmes de formation, d'innovation et d'accompagnement à grande échelle au Gabon et à l'international.",
     type: "Partenariat",
-    image: "/images/actualites/partenariats.jpg",
+    image: "/images/actualites/partenariat.jpg",
   },
 ];
 
@@ -178,7 +178,7 @@ export default function ActualitesPage() {
             >
               <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden rounded-t-2xl">
                 <Image
-                  src={selectedEvent.image}
+                  src="images/actualites/eagri2.png"
                   alt={selectedEvent.title}
                   fill
                   className="object-cover"

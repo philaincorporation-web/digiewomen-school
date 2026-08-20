@@ -8,7 +8,7 @@ export default function WhatsAppButton() {
   const message = encodeURIComponent(
     "Bonjour DigieWomen School, je souhaite obtenir des informations sur vos formations."
   );
-  const href = `https://wa.me/${contactInfo.whatsapp}?text=${message}`;
+  const href = `https://whatsapp.com/channel/0029VaufFo67T8bY1a1drU15`;
 
   return (
     <motion.a
