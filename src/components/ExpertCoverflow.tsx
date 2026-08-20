@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 export type ExpertSlide = {
@@ -48,7 +49,6 @@ export default function ExpertCoverflow({
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  // Tous les hooks DOIVENT être appelés avant tout return conditionnel
   useEffect(() => {
     if (slides.length === 0) {
       setActive(0);
@@ -129,7 +129,6 @@ export default function ExpertCoverflow({
     };
   }, [reduceMotion]);
 
-  // ← Maintenant seulement on peut faire le return anticipé
   if (!slides.length) return null;
 
   const sideCards = Math.max(0, visibleSideCards);
@@ -210,11 +209,13 @@ export default function ExpertCoverflow({
               {/* PHOTO */}
               <div className="absolute inset-0">
                 {expert.photo ? (
-                  <img
+                  <Image
                     src={expert.photo}
                     alt={`Photo de ${expert.name}`}
-                    className="h-full w-full object-cover"
-                    loading={isActive ? "eager" : "lazy"}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 90vw, 320px"
+                    priority={isActive}
                   />
                 ) : (
                   <div

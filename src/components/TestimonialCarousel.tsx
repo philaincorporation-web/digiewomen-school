@@ -1,12 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// ============================================================
-// 🔧 MODIFIE ICI TES TÉMOIGNAGES ET IMAGES
-// ============================================================
 const TEMOIGNAGES = [
   {
     id: 1,
@@ -15,7 +13,7 @@ const TEMOIGNAGES = [
     content:
       "Cette formation a complètement changé ma vision du digital. Les formateurs sont excellents et très à l'écoute.",
     rating: 5,
-    image: "/amina.jpg", // ← change l'image ici
+    image: "/amina.jpg",
     category: "apprenant",
   },
   {
@@ -25,7 +23,7 @@ const TEMOIGNAGES = [
     content:
       "Un accompagnement de qualité et une communauté très bienveillante. Je recommande vivement !",
     rating: 5,
-    image: "/fatou.jpg", // ← change l'image ici
+    image: "/fatou.jpg",
     category: "apprenant",
   },
   {
@@ -35,7 +33,7 @@ const TEMOIGNAGES = [
     content:
       "Nous avons recruté plusieurs talents issus de DigieWomen School. Très satisfaits du niveau des profils.",
     rating: 5,
-    image: "/entreprise.jpg", // ← change l'image ici
+    image: "/entreprise.jpg",
     category: "entreprise",
   },
   {
@@ -45,7 +43,7 @@ const TEMOIGNAGES = [
     content:
       "J'ai trouvé un stage grâce à la formation. L'équipe est vraiment investie dans la réussite des apprenantes.",
     rating: 5,
-    image: "/images/testimonials/mariama.jpg", // ← change l'image ici
+    image: "/images/testimonials/mariama.jpg",
     category: "apprenant",
   },
   {
@@ -55,14 +53,11 @@ const TEMOIGNAGES = [
     content:
       "Une collaboration fluide et des profils bien formés. DigieWomen School est un vrai vivier de talents.",
     rating: 4,
-    image: "/images/testimonials/nova.jpg", // ← change l'image ici
+    image: "/images/testimonials/nova.jpg",
     category: "entreprise",
   },
 ];
 
-// ============================================================
-// COMPOSANT CARTE
-// ============================================================
 function ReviewCard({
   name,
   role,
@@ -78,12 +73,10 @@ function ReviewCard({
   image: string;
   category: string;
 }) {
-  const isApprenant = category === "apprenant";
+
 
   return (
     <div className="flex-shrink-0 w-[300px] bg-white dark:bg-digie-dark-card rounded-2xl border border-gray-200 dark:border-gray-700 p-6 flex flex-col shadow-sm">
-      
-      {/* Étoiles centrées */}
       <div className="flex justify-center gap-0.5 mb-4">
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
@@ -98,42 +91,18 @@ function ReviewCard({
         ))}
       </div>
 
-      {/* Contenu centré */}
       <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-6 flex-1 text-center">
         &ldquo;{content}&rdquo;
       </p>
 
-      {/* Auteur + vignette centrés */}
       <div className="flex flex-col items-center gap-3 mt-auto">
-        {/* Vignette photo */}
         <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-gray-100 dark:border-gray-600 bg-gray-100 dark:bg-gray-700">
-          {/* On utilise <img> pour éviter les problèmes de Next/Image */}
-          <img
+          <Image
             src={image}
             alt={name}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              // Si l'image ne charge pas, on affiche les initiales
-              const target = e.currentTarget;
-              target.style.display = "none";
-              const parent = target.parentElement;
-              if (parent) {
-                parent.innerHTML = `
-                  <div class="w-full h-full flex items-center justify-center text-sm font-semibold ${
-                    isApprenant
-                      ? "bg-digie-green/15 text-digie-green"
-                      : "bg-digie-purple/15 text-digie-purple"
-                  }">
-                    ${name
-                      .split(" ")
-                      .slice(0, 2)
-                      .map((n) => n[0])
-                      .join("")
-                      .toUpperCase()}
-                  </div>
-                `;
-              }
-            }}
+            fill
+            className="object-cover"
+            sizes="56px"
           />
         </div>
 
@@ -150,31 +119,25 @@ function ReviewCard({
   );
 }
 
-// ============================================================
-// COMPOSANT PRINCIPAL
-// ============================================================
 export default function TestimonialsSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  // On triple la liste pour l'effet infini
   const loopItems = [...TEMOIGNAGES, ...TEMOIGNAGES, ...TEMOIGNAGES];
 
-  // ---------- AUTOSLIDE CONTINU ----------
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
 
     let animationId: number;
     let lastTime = performance.now();
-    const speed = 35; // pixels par seconde (plus lent = plus confortable)
+    const speed = 35;
 
     const animate = (time: number) => {
       if (!isPaused) {
         const delta = time - lastTime;
         container.scrollLeft += (speed * delta) / 1000;
 
-        // Boucle infinie
         const oneSetWidth = container.scrollWidth / 3;
         if (container.scrollLeft >= oneSetWidth) {
           container.scrollLeft = 0;
@@ -188,7 +151,6 @@ export default function TestimonialsSection() {
     return () => cancelAnimationFrame(animationId);
   }, [isPaused]);
 
-  // Navigation manuelle
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
     scrollRef.current.scrollBy({
@@ -197,7 +159,6 @@ export default function TestimonialsSection() {
     });
   };
 
-  // Note moyenne
   const averageRating = (
     TEMOIGNAGES.reduce((acc, t) => acc + t.rating, 0) / TEMOIGNAGES.length
   ).toFixed(1);
@@ -205,8 +166,6 @@ export default function TestimonialsSection() {
   return (
     <section className="py-16 md:py-24 bg-gray-50 dark:bg-digie-dark overflow-hidden">
       <div className="container mx-auto px-4">
-
-        {/* ===================== EN-TÊTE ===================== */}
         <div className="mb-12 md:mb-16 text-center lg:text-left">
           <p className="text-sm font-medium text-digie-green mb-2">
             Lisez les avis, avancez en confiance.
@@ -244,10 +203,7 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* ===================== CONTENU ===================== */}
         <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 lg:gap-12 items-center">
-
-          {/* -------- COLONNE GAUCHE -------- */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
             <Quote className="w-10 h-10 text-digie-green/30 mb-4" />
 
@@ -278,12 +234,8 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* -------- COLONNE DROITE : CAROUSEL -------- */}
           <div className="relative">
-            {/* Fondu gauche */}
             <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-r from-gray-50 dark:from-digie-dark to-transparent" />
-            
-            {/* Fondu droit */}
             <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-gray-50 dark:from-digie-dark to-transparent" />
 
             <div

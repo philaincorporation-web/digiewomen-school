@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, MapPin, X } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import {
   staggerContainer,
@@ -32,19 +33,19 @@ const events: EventItem[] = [
     fullDescription:
       "Sessions intensives de formation en cybersécurité et initiation à l'intelligence artificielle en partenariat avec Moov Africa Gabon Telecom. Ces formations visent à renforcer les compétences des jeunes et des femmes dans les métiers du numérique, avec un focus sur la protection des systèmes d'information et les applications concrètes de l'IA.",
     type: "Formation",
-    image: "/images/actualites/fortion2.png",
+    image: "/images/actualites/cybersecurite-ia.jpg",
   },
   {
     id: 2,
     title: "DIGIEWOMEN AWARDS",
-    date: "2023-2026",
+    date: "2023-2025",
     location: "Libreville",
     description:
       "4 éditions des DIGIEWOMEN AWARDS célébrant l'excellence des femmes et des jeunes dans le numérique et l'agro-pastoral.",
     fullDescription:
-      "4 éditions Panafricaine des DIGIEWOMEN AWARDS célébrant l'excellence des femmes du continent et des jeunes dans le numérique. Un événement phare qui met en lumière les talents, récompense l'innovation et crée des opportunités de networking et de collaboration.",
+      "4 éditions des DIGIEWOMEN AWARDS célébrant l'excellence des femmes et des jeunes dans le numérique et l'agro-pastoral. Un événement phare qui met en lumière les talents, récompense l'innovation et crée des opportunités de networking et de collaboration.",
     type: "Événement",
-    image: "/images/actualites/conference006.png",
+    image: "/images/actualites/digiewomen-awards.jpg",
   },
   {
     id: 3,
@@ -56,7 +57,7 @@ const events: EventItem[] = [
     fullDescription:
       "Déploiement de la plateforme e-Agri361 pour l'agriculture intelligente et le développement agro-pastoral des femmes et des jeunes. Cette solution digitale intègre formation, accès aux intrants, marketplace agricole, météo et outils d'aide à la décision basés sur l'IA.",
     type: "Innovation",
-    image: "/images/actualites/eagri2.png",
+    image: "/images/actualites/e-agri361.jpg",
   },
   {
     id: 4,
@@ -68,23 +69,8 @@ const events: EventItem[] = [
     fullDescription:
       "Collaboration avec les ministères, Moov Africa, l'OIF, l'IOM et plus de 35 partenaires stratégiques. Ces partenariats permettent de déployer des programmes de formation, d'innovation et d'accompagnement à grande échelle au Gabon et à l'international.",
     type: "Partenariat",
-    image: "/images/actualites/partenariat.jpg",
+    image: "/images/actualites/partenariats.jpg",
   },
-  
-   {
-    id: 5,
-    title: "Partenariats institutionnels",
-    date: "2018-2026",
-    location: "Gabon & International",
-    description:
-      "Collaboration avec les ministères, Moov Africa, l'OIF, l'IOM et plus de 35 partenaires stratégiques.",
-    fullDescription:
-      "Collaboration avec les ministères, Moov Africa, l'OIF, l'IOM et plus de 35 partenaires stratégiques. Ces partenariats permettent de déployer des programmes de formation, d'innovation et d'accompagnement à grande échelle au Gabon et à l'international.",
-    type: "Partenariat",
-    image: "/images/actualites/partenariat.jpg",
-  },
-  
-
 ];
 
 export default function ActualitesPage() {
@@ -122,15 +108,12 @@ export default function ActualitesPage() {
               >
                 {/* IMAGE */}
                 <div className="relative h-36 sm:h-44 md:h-48 overflow-hidden">
-                  <img
+                  <Image
                     src={event.image}
                     alt={event.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => {
-                      // Fallback si l'image n'existe pas encore
-                      (e.target as HTMLImageElement).src =
-                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect fill='%23d1fae5' width='400' height='200'/%3E%3C/svg%3E";
-                    }}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 dark:bg-digie-dark-card/90 text-digie-green text-xs font-semibold backdrop-blur-sm">
@@ -138,7 +121,6 @@ export default function ActualitesPage() {
                   </span>
                 </div>
 
-                {/* CONTENU */}
                 <div className="p-4 sm:p-5 md:p-6">
                   <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
                     {event.title}
@@ -176,7 +158,7 @@ export default function ActualitesPage() {
         </div>
       </section>
 
-      {/* ========== MODALE ========== */}
+      {/* MODALE */}
       <AnimatePresence>
         {selectedEvent && (
           <motion.div
@@ -194,20 +176,16 @@ export default function ActualitesPage() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Image de la modale */}
               <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden rounded-t-2xl">
-                <img
+                <Image
                   src={selectedEvent.image}
                   alt={selectedEvent.title}
-                  className="h-full w-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Crect fill='%23d1fae5' width='800' height='400'/%3E%3C/svg%3E";
-                  }}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 672px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 
-                {/* Bouton fermer */}
                 <button
                   onClick={() => setSelectedEvent(null)}
                   className="absolute top-3 right-3 p-2 rounded-full bg-black/40 text-white hover:bg-black/60 transition backdrop-blur-sm"
@@ -221,7 +199,6 @@ export default function ActualitesPage() {
                 </span>
               </div>
 
-              {/* Contenu de la modale */}
               <div className="p-5 sm:p-6 md:p-8">
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">
                   {selectedEvent.title}
@@ -238,7 +215,7 @@ export default function ActualitesPage() {
                   </span>
                 </div>
 
-                <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-sm sm:text-base">
+                <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-sm sm:text-base whitespace-pre-line">
                   {selectedEvent.fullDescription || selectedEvent.description}
                 </p>
 
