@@ -7,7 +7,7 @@ import {
   heroTitle,
   heroDescription,
   staggerContainer,
-  staggerItem,
+
   sectionTitle,
 } from "@/lib/animations";
 import HeroCarousel from "@/components/HeroCarousel";

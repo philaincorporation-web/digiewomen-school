@@ -68,11 +68,7 @@ export const heroSlides: HeroSlide[] = [
   },
 ];
 
-const backgrounds = {
-  digital: "/acceuilbg1.png",
-  agriculture: "/poulet.jpg",
-  training: "/personnel.png",
-} as const;
+
 
 export const pageHeroSlides: Record<string, HeroSlide[]> = {
   parcours: [

@@ -24,7 +24,6 @@ type ExpertCoverflowProps = {
   autoplay?: boolean;
   autoplayDirection?: "leftToRight" | "rightToLeft";
   interval?: number;
-  transitionDuration?: number;
   showTitle?: boolean;
   visibleSideCards?: number;
 };
@@ -41,7 +40,6 @@ export default function ExpertCoverflow({
   autoplay = true,
   autoplayDirection = "rightToLeft",
   interval = 10000,
-  transitionDuration = 1.2,
   showTitle = true,
   visibleSideCards = 2,
 }: ExpertCoverflowProps) {
@@ -50,6 +48,7 @@ export default function ExpertCoverflow({
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
+  // Tous les hooks DOIVENT être appelés avant tout return conditionnel
   useEffect(() => {
     if (slides.length === 0) {
       setActive(0);
@@ -80,7 +79,16 @@ export default function ExpertCoverflow({
     }, interval);
 
     return () => window.clearTimeout(timer);
-  }, [active, autoplay, autoplayDirection, goTo, interval, paused, reduceMotion, slides.length]);
+  }, [
+    active,
+    autoplay,
+    autoplayDirection,
+    goTo,
+    interval,
+    paused,
+    reduceMotion,
+    slides.length,
+  ]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -111,11 +119,6 @@ export default function ExpertCoverflow({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [next, previous]);
 
-  if (!slides.length) return null;
-
-  const sideCards = Math.max(0, visibleSideCards);
-  const sideOpacity = Math.min(100, Math.max(0, opacity));
-
   const motionTransition = useMemo(() => {
     if (reduceMotion) return { duration: 0 };
     return {
@@ -126,7 +129,11 @@ export default function ExpertCoverflow({
     };
   }, [reduceMotion]);
 
-  // Hauteur un peu plus basse sur mobile
+  // ← Maintenant seulement on peut faire le return anticipé
+  if (!slides.length) return null;
+
+  const sideCards = Math.max(0, visibleSideCards);
+  const sideOpacity = Math.min(100, Math.max(0, opacity));
   const containerHeight = Math.max(420, cardHeight + 60);
 
   return (
@@ -147,7 +154,11 @@ export default function ExpertCoverflow({
         onMouseLeave={() => setPaused(false)}
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          if (
+            !event.currentTarget.contains(
+              event.relatedTarget as Node | null
+            )
+          ) {
             setPaused(false);
           }
         }}
@@ -173,7 +184,6 @@ export default function ExpertCoverflow({
                 focus-visible:ring-4 focus-visible:ring-digie-green
               "
               style={{
-                // Plus petit sur mobile
                 width: `min(${cardWidth}px, calc(100vw - 64px))`,
                 height: `min(${cardHeight}px, 380px)`,
                 borderRadius: `${radius}px`,
@@ -289,8 +299,12 @@ export default function ExpertCoverflow({
           {slides.map((expert, index) => {
             const isActive = active === index;
             const distance = Math.abs(index - active);
-            const circularDistance = Math.min(distance, slides.length - distance);
-            const showIndicator = slides.length <= 10 || circularDistance <= 3;
+            const circularDistance = Math.min(
+              distance,
+              slides.length - distance
+            );
+            const showIndicator =
+              slides.length <= 10 || circularDistance <= 3;
 
             if (!showIndicator) return null;
 
@@ -304,7 +318,11 @@ export default function ExpertCoverflow({
                 className={`
                   h-2.5 shrink-0 rounded-full transition-all duration-300
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-digie-green
-                  ${isActive ? "w-8 bg-digie-green" : "w-2.5 bg-gray-300 dark:bg-gray-500"}
+                  ${
+                    isActive
+                      ? "w-8 bg-digie-green"
+                      : "w-2.5 bg-gray-300 dark:bg-gray-500"
+                  }
                 `}
               />
             );
