@@ -178,7 +178,7 @@ export default function ActualitesPage() {
             >
               <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden rounded-t-2xl">
                 <Image
-                  src="images/actualites/eagri2.png"
+                  src={selectedEvent.image}
                   alt={selectedEvent.title}
                   fill
                   className="object-cover"

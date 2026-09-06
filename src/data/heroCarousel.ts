@@ -12,6 +12,7 @@ export type HeroSlide = {
   contentPosition: "left" | "center" | "right";
   objectPosition?: string;
   mobileObjectPosition?: string;
+  overlayGradient?: string;
 };
 
 export const carouselConfig = {
@@ -92,13 +93,13 @@ export const pageHeroSlides: Record<string, HeroSlide[]> = {
     { id: "formateurs-terrain", image: "/formateur4.png", alt: "Activité agro-pastorale", label: "Expertises terrain", title: "Des compétences ancrées dans le réel", description: "Du numérique à l'agriculture intelligente, nos experts vous accompagnent dans vos projets.", buttonText: "Nous contacter", buttonLink: "/contact", contentPosition: "right" },
   ],
   actualites: [
-    { id: "actualites-evenements", image: "/bga.png", alt: "Événement DigieWomen", label: "Événements & réalisations", title: "Expansion panafricaine des DigieWomen Awards (DIWA)", description: "La 4ème édition en 2026 s'ouvre aux candidates de toute l'Afrique, élargissant sa portée au-delà du Gabon.", buttonText: "Voir les actualités", buttonLink: "#actualites", contentPosition: "left" },
-    { id: "actualites-innovation", image: "/hhtr.png", alt: "Innovation numérique", label: "Innovation", title: "Imaginer de nouvelles opportunités", description: "Nos programmes rapprochent les talents des technologies qui transforment le quotidien.", buttonText: "Découvrir les formations", buttonLink: "/formations", contentPosition: "left" },
-    { id: "actualites-eagri", image: "/certif26.png", alt: "Projet agro-pastoral", label: "Impact terrain", title: "L'innovation au plus près des communautés", description: "Aux côtés de nos partenaires, nos actions placent la formation au cœur de la croissance et du développement économique", buttonText: "Découvrir nos solutions", buttonLink: "/specialisations", contentPosition: "right" },
+    { id: "actualites-evenements", image: "/bga.png", alt: "Événement DigieWomen", label: "Événements & réalisations", title: "Expansion panafricaine des DigieWomen Awards (DIWA)", description: "La 4ème édition en 2026 s'ouvre aux candidates de toute l'Afrique, élargissant sa portée au-delà du Gabon.", buttonText: "Voir les actualités", buttonLink: "#actualites", contentPosition: "left", overlayGradient: "green" },
+    { id: "actualites-innovation", image: "/hhtr.png", alt: "Innovation numérique", label: "Innovation", title: "Imaginer de nouvelles opportunités", description: "Nos programmes rapprochent les talents des technologies qui transforment le quotidien.", buttonText: "Découvrir les formations", buttonLink: "/formations", contentPosition: "left", overlayGradient: "green" },
+    { id: "actualites-eagri", image: "/certif26.png", alt: "Projet agro-pastoral", label: "Impact terrain", title: "L'innovation au plus près des communautés", description: "Aux côtés de nos partenaires, nos actions placent la formation au cœur de la croissance et du développement économique", buttonText: "Découvrir nos solutions", buttonLink: "/specialisations", contentPosition: "right", overlayGradient: "green" },
   ],
   contact: [
-    { id: "contact-echange", image: "/contacte.jpg", alt: "Échange avec des professionnels", label: "Contact", title: "Parlons de votre projet", description: "Entreprise, administration, particulier ou entrepreneur : trouvez l'accompagnement adapté à vos besoins.", buttonText: "Nous écrire", buttonLink: "#formulaire", contentPosition: "left" },
-    { id: "contact-solutions", image: "/ambition.jpg", alt: "Solutions numériques", label: "Solutions sur mesure", title: "Donnez vie à vos ambitions", description: "Nos équipes vous aident à transformer vos besoins en solutions concrètes.", buttonText: "Découvrir nos spécialisations", buttonLink: "/specialisations", contentPosition: "left" },
-    { id: "contact-terrain", image: "/projet.jpg", alt: "Projet agro-pastoral", label: "Accompagnement", title: "Construisons des opportunités durables", description: "De la formation au conseil, nous sommes à vos côtés pour faire avancer vos projets.", buttonText: "Voir les formations", buttonLink: "/formations", contentPosition: "right" },
+    { id: "contact-echange", image: "/contacte.jpg", alt: "Échange avec des professionnels", label: "Contact", title: "Parlons de votre projet", description: "Entreprise, administration, particulier ou entrepreneur : trouvez l'accompagnement adapté à vos besoins.", buttonText: "Nous écrire", buttonLink: "#formulaire", contentPosition: "left", overlayGradient: "green" },
+    { id: "contact-solutions", image: "/ambition.jpg", alt: "Solutions numériques", label: "Solutions sur mesure", title: "Donnez vie à vos ambitions", description: "Nos équipes vous aident à transformer vos besoins en solutions concrètes.", buttonText: "Découvrir nos spécialisations", buttonLink: "/specialisations", contentPosition: "left", overlayGradient: "green" },
+    { id: "contact-terrain", image: "/projet.jpg", alt: "Projet agro-pastoral", label: "Accompagnement", title: "Construisons des opportunités durables", description: "De la formation au conseil, nous sommes à vos côtés pour faire avancer vos projets.", buttonText: "Voir les formations", buttonLink: "/formations", contentPosition: "right", overlayGradient: "green" },
   ],
 };

@@ -170,10 +170,18 @@ export default function HeroCarousel({ slides = heroSlides, ariaLabel = "À la u
             />
           </motion.div>
 
-          {/* Overlay principal */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/15" />
-          {/* Overlay secondaire */}
-          <div className="absolute inset-0 bg-black/15" />
+          {/* Overlay principal avec support du dégradé vert sur-mesure */}
+          <div
+            className={`absolute inset-0 ${
+              slide.overlayGradient === "green"
+                ? "bg-gradient-to-r from-digie-green-dark/90 via-digie-green/60 to-black/75"
+                : slide.overlayGradient === "none"
+                ? "bg-transparent"
+                : "bg-gradient-to-r from-black/80 via-black/50 to-black/20"
+            }`}
+          />
+          {/* Overlay secondaire pour contraster le texte */}
+          <div className="absolute inset-0 bg-black/20" />
         </motion.div>
       </AnimatePresence>
 
