@@ -35,7 +35,7 @@ export default function FormationCard({ formation }: { formation: Formation }) {
         {formation.description}
       </p>
       <Link
-       href={`/formations/${formation.slug ?? formation.id}`}
+        href={`/formations/${formation.id}`}
         className="inline-flex items-center gap-1 text-sm font-medium text-digie-white hover:underline transition-all duration-200 group/link"
       >
         En savoir plus
