@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ChatbaseWidget from "@/components/ChatbaseWidget";
 import PageTransitionLoader from "@/components/PageTransitionLoader";
 import SWRegister from "@/components/pwa/SWRegister";
 import PWAInstallPrompt from "@/components/pwa/PWAInstallPrompt";
@@ -79,6 +80,7 @@ export default function RootLayout({
           <main className="min-h-screen pt-20">{children}</main>
           <Footer />
           <WhatsAppButton />
+          <ChatbaseWidget />
           <PWAInstallPrompt />
         </ThemeProvider>
       </body>
