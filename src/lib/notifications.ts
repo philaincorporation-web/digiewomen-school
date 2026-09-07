@@ -37,7 +37,6 @@ export async function sendLocalNotification(
   const notificationOptions: NotificationOptions = {
     icon: "/android-chrome-192x192.png",
     badge: "/favicon-32x32.png",
-    vibrate: [100, 50, 100],
     body: options?.body || "Nouvelle information sur DigieWomen School",
     data: { url: options?.url || "/" },
     ...options,

@@ -64,14 +64,13 @@ function ReviewCard({
   content,
   rating,
   image,
-  category,
 }: {
   name: string;
   role: string;
   content: string;
   rating: number;
   image: string;
-  category: string;
+  category?: string;
 }) {
 
 

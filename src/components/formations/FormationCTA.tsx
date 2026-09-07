@@ -5,7 +5,7 @@ type FormationCTAProps = {
   slug?: string;
 };
 
-export default function FormationCTA({ title, slug }: FormationCTAProps) {
+export default function FormationCTA({ title }: FormationCTAProps) {
   return (
     <section id="inscription" className="bg-digie-green py-14 text-white md:py-20">
       <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
