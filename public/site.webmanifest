@@ -1,4 +1,11 @@
 {
+  "name": "DigieWomen School",
+  "short_name": "DigieWomen School",
+  "description": "Portail de formation aux métiers du numérique et de l'agro-pastoral au Gabon et à l'international.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#189000",
   "icons": [
     { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
